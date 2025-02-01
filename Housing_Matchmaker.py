@@ -12,11 +12,6 @@ if "location_found" not in st.session_state:
     st.session_state["location_found"] = None
 
 def show_housing_matchmaker():
-    # st.title("Pathway AI: Smart Homeless Assistance Hub")
-    
-    # ================================================================
-    # Section 1: Shelter Finder Map (Google Maps Embed Only)
-    # ================================================================
     st.header("Shelter Finder Map")
     st.write("""
     Enter your general location (city or zip code) to view nearby homeless shelter locations on the map.
@@ -42,12 +37,12 @@ def show_housing_matchmaker():
             
             # Build the Google Maps embed URL
             search_query = location_input.replace(" ", "+") + "+homeless+shelter"
-            google_maps_api_key = "AIzaSyATMJp_EqgFJyl8dTfc8A3Wt4hNriCwgV0"  # Replace with your valid API key
+            google_maps_api_key = "key"  # Replace with your valid API key
             map_url = f"https://www.google.com/maps/embed/v1/search?key={google_maps_api_key}&q={search_query}"
             st.session_state["map_url"] = map_url  # Save the embed URL
     
     # If a map has been generated, display it persistently.
-    if st.session_state["map_url"]:
+    if st.session_state.get("map_url"):
         st.write("Location found: " + st.session_state.get("location_found", ""))
         st.markdown(
             f"""
@@ -55,7 +50,7 @@ def show_housing_matchmaker():
                 width="700"
                 height="500"
                 frameborder="0" style="border:0"
-                src="{st.session_state['map_url']}" allowfullscreen>
+                src="{st.session_state.get('map_url')}" allowfullscreen>
             </iframe>
             """,
             unsafe_allow_html=True
@@ -106,8 +101,8 @@ def show_housing_matchmaker():
                         "Please provide details about how far apart the locations are along with additional helpful information such as accessibility, transit options, and nearby services."
                     )
                     
-                    # Set your OpenAI API key (ensure you're using version 0.28.0)
-                    openai.api_key = "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"  # Replace with your actual API key
+                    # Set your OpenAI API key (ensure you're using your valid key)
+                    # openai.api_key should already be set above.
                     
                     try:
                         # Create the chat completion with streaming enabled
@@ -138,4 +133,5 @@ def show_housing_matchmaker():
                     
                     st.success("Shelter analysis complete!")
 
-# To use this page, ensure you call show_housing_matchmaker() in your main Streamlit app.
+if __name__ == "__main__":
+    show_housing_matchmaker()
