@@ -7,7 +7,7 @@ from geopy.geocoders import Nominatim
 from streamlit_folium import st_folium
 
 # Set your OpenAI API key
-openai.api_key = "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"  # Replace with your actual OpenAI API key
+openai.api_key = "key"  # Replace with your actual OpenAI API key
 
 # Use session_state to store the generated map and AI guidance so they persist on the page.
 if "folium_map" not in st.session_state:
