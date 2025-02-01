@@ -5,10 +5,14 @@ from Resource_Navigator import show_resource_navigator
 from Mental_Health_Chatbot import show_mental_health_chatbot
 from Resume_Job_Finder import show_resume_job_finder
 from Admin_Dashboard import show_admin_dashboard
+from geopy.geocoders import Nominatim
+import folium
+from streamlit_folium import st_folium
+
+
 
 def main():
     st.set_page_config(page_title="Pathway AI: Smart Homeless Assistance Hub", layout="wide")
-    st.title("Pathway AI: Smart Homeless Assistance Hub")
 
     # Create a sidebar for page navigation
     pages = {
